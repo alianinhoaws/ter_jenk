@@ -20,7 +20,7 @@ sudo add-apt-repository ppa:jonathonf/python-3.6
 sudo apt-get -y update 
 sudo apt-get -y install python 3.6
 "}
-
+EOF
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-1804-lts"
@@ -45,7 +45,7 @@ sudo yum update
 sudo apt-get -y update
 sudo yum install -y python36u python36u-libs python36u-devel python36u-pip
 "}
-
+EOF
    boot_disk {
     initialize_params{
      image = "centos-cloud/centos-7"
