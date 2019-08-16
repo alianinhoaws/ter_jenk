@@ -9,8 +9,17 @@ provider "google" {
 
 resource "google_compute_instance" "http" {
   count = 1
-  name         = "server${count.index}"
+  name         = "ubuntu${count.index}"
   machine_type = "g1-small"
+	
+metadata_startup_script = <<EOF
+#!/bin/bash
+apt update
+sudo apt-get -y update
+sudo add-apt-repository ppa:jonathonf/python-3.6
+sudo apt-get -y update 
+sudo apt-get -y install python 3.6
+"}
 
   boot_disk {
     initialize_params {
@@ -26,8 +35,16 @@ resource "google_compute_instance" "http" {
 }
 
 resource "google_compute_instance" "centos"{
-   name = "centos"
+   count = 1
+   name = "centos${count.index}"
    machine_type = "g1-small"
+
+metadata_startup_script = <<EOF
+#!/bin/bash
+sudo yum update
+sudo apt-get -y update
+sudo yum install -y python36u python36u-libs python36u-devel python36u-pip
+"}
 
    boot_disk {
     initialize_params{
